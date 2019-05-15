@@ -25,7 +25,7 @@ namespace StoreWeb.Views
                                      select new
                                      {
                                          id_fabricante = f.id_fabricante,
-                                         nombre_fabricante = f.id_fabricante,
+                                         nombre_fabricante = f.nombre_fabricante,
                                          pais_fabricante = f.pais_fabricantes
                                      };
                 grdDatos.DataSource = lstFabricantes.ToList();
@@ -57,6 +57,20 @@ namespace StoreWeb.Views
                 this.cboPais.DisplayMember = "valor_dominio";
                 this.cboPais.ValueMember = "id_dominio";
             };
+        }
+
+        private fabricantes getSelectedItem()
+        {
+            fabricantes f = new fabricantes();
+            try
+            {
+                f.id_fabricante =int.Parse( grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value.ToString());
+                return f;
+            }
+            catch
+            {
+                return null;
+            }
         }
         private void FrmFabricantes_Load(object sender, EventArgs e)
         {
@@ -102,9 +116,23 @@ namespace StoreWeb.Views
 
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-            FrmFabricantesGestion frmFabricantesGestion = new FrmFabricantesGestion();
+            FrmFabricantesGestion frmFabricantesGestion = new FrmFabricantesGestion(null);
             frmFabricantesGestion.ShowDialog();
             refrescarTabla();
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            // retornar valor seleccionado en la tabla
+            fabricantes f = getSelectedItem();
+
+            if (f != null)
+            {
+                // llamar formulario en modo
+                FrmFabricantesGestion frmFabricantesGestion = new FrmFabricantesGestion(f.id_fabricante);
+                frmFabricantesGestion.ShowDialog();
+                refrescarTabla();
+            }
         }
     }
 }

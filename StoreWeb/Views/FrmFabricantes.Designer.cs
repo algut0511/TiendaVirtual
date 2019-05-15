@@ -133,7 +133,9 @@
             this.grdDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdDatos.Location = new System.Drawing.Point(3, 17);
+            this.grdDatos.MultiSelect = false;
             this.grdDatos.Name = "grdDatos";
+            this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDatos.Size = new System.Drawing.Size(730, 250);
             this.grdDatos.TabIndex = 0;
             // 
@@ -164,6 +166,7 @@
             this.btnEditar.TabIndex = 8;
             this.btnEditar.Text = "EDITAR";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // btnEliminar
             // 
