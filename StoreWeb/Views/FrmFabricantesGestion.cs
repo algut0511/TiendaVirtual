@@ -35,7 +35,7 @@ namespace StoreWeb.Views
                 // consultar datos a editar de la base de datos
                 oFabricantes = db.fabricantes.Find(idfabricante);
                 txtNombre.Text = oFabricantes.nombre_fabricante;
-                cboPais.SelectedValue = oFabricantes.pais_fabricantes;
+                txtNombre.Text = oFabricantes.pais_fabricantes;
             }
         }
         private void CboPais_SelectedIndexChanged(object sender, EventArgs e)

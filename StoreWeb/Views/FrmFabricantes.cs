@@ -134,5 +134,30 @@ namespace StoreWeb.Views
                 refrescarTabla();
             }
         }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {   // Obtener la fila que se va a eliminar
+            fabricantes f = this.getSelectedItem();
+
+            // Validar si hubo selección
+
+            if(f != null)
+            {
+                if (MessageBox.Show("¿Seguro que quiere eliminar el registro ?",
+                    "confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button1)
+                    == DialogResult.Yes)
+                {
+                    using (tiendaEntities db = new tiendaEntities())
+                    {
+                        // buscar en la bd el fabricante a eliminar
+                        fabricantes fabEliminar = db.fabricantes.Find(f.id_fabricante);
+                        db.fabricantes.Remove(fabEliminar);
+                        db.SaveChanges();
+                    }
+                    refrescarTabla();
+                }
+
+            }
+        }
     }
 }
